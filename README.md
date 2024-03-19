@@ -105,12 +105,74 @@
    Pick one task ->
    Get ~1000 inputs and outputs for the task (Better than the ~OK from the LLM) ->
    Finetune a small LLM on this data
+8. Read the file: Where_finetuning_fits_in.ipynb
 ## Instruction finetuning
-
+1.  Goal for this lab: Give the chatting power to all of the models
+2.  What is instruction finetuning?
+    - Finetuning includes reasoning, routing, copilot, chat, agents. Instruction finetuning is one of it.
+    - AKA 'instruction-tuned' or 'instruction-following' LLMs
+    - Teaches model to behave more like a chatbot
+    - Better user interface for model interaction
+      * Turned GPT-3 into ChatGPT
+      * Increase AI adoption, from thousands of researchers to millions of people
+3. Instruction-following datasets
+   - Some existing data is ready as-is, online:
+     * FAQs (Frequently asked questions)
+     * Customer support conversatons
+     * Slack messages
+4. LLM Data Generation
+   - Non-Q&A data can also be converted to Q&A
+     * Using a prompt template
+     * Using another LLM
+     * ChatGPT('Alpaca')
+     * Open source model
+5. Instruction Finetunig Generalization
+   - Can access model's pre-existing knowledge
+   - Generalize following instructions to other data, not in finetuning dataset
+   - Questions not in finetuning data, only base data, model can also answer after finetuning.
+6. Overview
+   Data Prep -> Training -> Evaluation -> repeat...
+7. Different Types of Finetuning: 'Data prep' is where differentiates the different types of finetunes.
+8. Read the file : Instruction_tuning.ipynb
 ## Data preparation
+1. What kind of data?
 
+   |Better |Woser|
+   |-------|--------|
+   |Higher Quality| Lower Quality|
+   |Diversity|Homogeneity|
+   |Real|Generated|
+   |More|Less|
+2. Steps to prepare your data:
+   Collect instruction-response pairs->
+   Concatenate pairs(add prompt template, if applicable)->
+   Tokenize: Pad, Truncate->
+   Split into train/test
+3. Tokenizing your data
+   There are multiple popular tokenizers:
+   - Use the tokenizer associated with your model
+4. Read the file: Data_preparation.ipynb
 ## Training process
-
+1. Training: same as other neural networks
+2. What's goint on?
+   - Add training data
+   - Calculate loss
+   - Backprop through model
+   - Update weights
+3. Hyperparameters
+   - Learning rate
+   - Learning rate scheduler
+   - Optimier hyperparameters
+4. Run through general chunks of training process in code
+```
+for epoch in range(num_epoch):
+   for batch in train_dataloader:
+      outputs = model(**batch)
+      loss = output.loss
+      loss.backward()
+      optimizer.step()
+```
+5. Read the file: 
 ## Evaluation and iteration
 
 ## Consideration on getting started now
